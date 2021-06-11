@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.2/css/bulma.min.css">
+    <title>DEMO LFI</title>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <% if(state==1) { %>
+            <div class="buttons">
+                <button class="button is-primary" onclick="window.location.href = '/create'">Create</button>
+            </div>
+            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>File Name</th>
+                        <th>Create At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(let i of file) {%>
+                        <tr>
+                            <td>
+                                <a href="/view?file=<%=i.name%>"><%=i.name%></a>
+                            </td>
+                            <td>
+                                <%=i.cre%>
+                            </td>
+                        </tr>
+                        <%}%>
+                </tbody>
+            </table>
+            <% } else if(state==2) {%>
+                <form action="submit" method="POST">
+                    <div class="block">
+                        <input class="input is-link" type="text" name="name_file" placeholder="test.txt">
+                    </div>
+                    <div class="block">
+                        <textarea class="textarea" name="text" placeholder="e.g. Hello world"></textarea>
+                    </div>
+                    <div class="buttons">
+                        <button type="submit" class="button is-primary">Save</button>
+                    </div>
+                </form>
+                <%} else if(state==3) {%>
+                    <%=text%>
+                        <%}%>
+    </div>
+</body>
+
+</html>
